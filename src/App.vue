@@ -1,37 +1,45 @@
+<script setup>
+import { ref } from 'vue';
+
+const numbers = ref([]);
+//const numbers = [];
+// initialization; condition; afterthought
+for (let i = 1; i <= 100; i=i+1) {
+  if (i % 15 === 0) {
+    numbers.value.push("FooBar");
+  } else if (i % 3 === 0) {
+    numbers.value.push("Foo");
+  } else if (i % 5 === 0) {
+    numbers.value.push("Bar");
+  } else {
+    numbers.value.push(i);
+  }
+
+  
+}
+setTimeout(() => numbers.value.push('penises'), 1)
+</script>
+
 <template>
-  <div>
-    <h1>FooBar Vue App</h1>
+  <div class="container">
+    <h1>FooBar App</h1>
     <ul>
-      <li v-for="num in numbers" :key="num">{{ displayText(num) }}</li>
+      <li v-for="(item, index) in numbers" :key="index">{{ item }}</li>
     </ul>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      numbers: Array.from({ length: 100 }, (_, i) => i + 1),
-    };
-  },
-  methods: {
-    displayText(num) {
-      if (num % 3 === 0 && num % 5 === 0) return "FooBar";
-      if (num % 3 === 0) return "Foo";
-      if (num % 5 === 0) return "Bar";
-      return num;
-    },
-  },
-};
-</script>
-
 <style>
-h1 {
+.container {
+  font-family: Arial, sans-serif;
   text-align: center;
 }
 ul {
   list-style-type: none;
   padding: 0;
-  text-align: center;
+}
+li {
+  font-size: 20px;
+  margin: 5px 0;
 }
 </style>
